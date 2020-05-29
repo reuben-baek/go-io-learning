@@ -21,8 +21,9 @@ func (o Object) Write(p []byte) (n int, err error) {
 
 func (o Object) Close() error {
 	if c, ok := o.io.(io.Closer); ok {
-		c.Close()
+		return c.Close()
 	}
+	return nil
 }
 
 type Storage interface {

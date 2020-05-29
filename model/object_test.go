@@ -63,7 +63,7 @@ func TestObject_Read2(t *testing.T) {
 		t.Errorf("err %v", err)
 	}
 
-	object2 := storage.Open("hi2.txt")
+	object2 := storage.Open("hi.txt")
 	buffer := make([]byte, 5)
 	n, err = object2.Read(buffer)
 	if n != len(hello) {
