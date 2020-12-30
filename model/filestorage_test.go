@@ -1,6 +1,8 @@
 package model
 
 import (
+	"crypto/rand"
+	"crypto/sha1"
 	"fmt"
 	"io"
 	"testing"
@@ -40,4 +42,30 @@ func TestFileStorage_Copy(t *testing.T) {
 	buffer := make([]byte, 5)
 	obj2.Read(buffer)
 	fmt.Printf("%s", buffer)
+}
+
+func TestObject(t *testing.T) {
+	reader := rand.Reader
+
+	p := make([]byte, 100)
+	reader.Read(p)
+	fmt.Printf("%v", p)
+	fmt.Println()
+	hash := sha1.New()
+	hash.Write(p)
+
+	reader.Read(p)
+	fmt.Printf("%v", p)
+	fmt.Println()
+	hash.Write(p)
+
+	sum := hash.Sum(nil)
+	fmt.Printf("%v", sum)
+	fmt.Println()
+
+	hash2 := sha1.New()
+	io.CopyN(hash2, reader, 200000)
+	sum2 := hash2.Sum(nil)
+	fmt.Printf("%v", sum2)
+	fmt.Println()
 }

@@ -14,7 +14,7 @@ func NewMemoryStorage() *MemoryStorage {
 
 func (m MemoryStorage) Create(id string) Object {
 	m.storage[id] = new(bytes.Buffer)
-	return *NewObject(id, m.storage[id])
+	return NewObject(id, m.storage[id])
 }
 
 func (m MemoryStorage) Open(id string) Object {
@@ -22,5 +22,5 @@ func (m MemoryStorage) Open(id string) Object {
 	if !ok {
 		panic("not exist")
 	}
-	return *NewObject(id, buffer)
+	return NewObject(id, buffer)
 }

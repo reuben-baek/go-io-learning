@@ -10,10 +10,10 @@ func NewFileStorage() *FileStorage {
 
 func (f FileStorage) Create(id string) Object {
 	file, _ := os.Create(id)
-	return *NewObject(id, file)
+	return NewObject(id, file)
 }
 
 func (f FileStorage) Open(id string) Object {
 	file, _ := os.Open(id)
-	return *NewObject(id, file)
+	return NewObject(id, file)
 }
